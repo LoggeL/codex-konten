@@ -34,14 +34,10 @@ struct CodexAccountsApp: App {
         )) {
             AccountsPanel(model: model, updates: updates)
         } label: {
-            HStack(spacing: 4) {
-                Image(systemName: "person.2")
-                if let remaining = model.menuBarRemaining {
-                    Text("\(remaining.percent)%").monospacedDigit()
-                }
-            }
-            .help(model.menuBarDescription)
-            .accessibilityLabel(model.menuBarDescription)
+            Text(model.menuBarRemaining.map { "\($0.percent)%" } ?? "…")
+                .monospacedDigit()
+                .help(model.menuBarDescription)
+                .accessibilityLabel(model.menuBarDescription)
         }
         .menuBarExtraStyle(.window)
         Window("Konten verwalten", id: "accounts") {

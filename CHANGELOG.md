@@ -1,5 +1,9 @@
 # Änderungen
 
+## 1.2.2
+
+- Der Menüleisteneintrag verwendet ein einzelnes Text-Label für den Prozentwert. Während des Ladens erscheint „…“.
+
 ## 1.2.1
 
 - Die Menüleiste zeigt den verbleibenden Prozentsatz des aktiven Kontos. Bevorzugt wird das Wochenlimit, ersatzweise das 5-Stunden-Limit.
