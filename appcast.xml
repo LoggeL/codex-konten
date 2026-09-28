@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Codex Konten</title>
+        <item>
+            <title>1.2.0</title>
+            <pubDate>Mon, 28 Sep 2026 09:34:17 +0200</pubDate>
+            <link>https://github.com/LoggeL/codex-konten/releases/latest</link>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/LoggeL/codex-konten/releases/download/v1.2.0/Codex-Konten-1.2.0-universal.zip" length="1689681" type="application/octet-stream" sparkle:edSignature="wjx9t+w8l9HUbfx5EBglVwQW4d6hJtOH4WMs8ehuCTq90tCyrZ8E2q+mG/Y23dIjPJyGjgsmmraFU6B8ebEsBg=="/>
+        </item>
+    </channel>
+</rss>
