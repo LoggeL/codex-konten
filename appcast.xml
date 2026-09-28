@@ -3,6 +3,15 @@
     <channel>
         <title>Codex Konten</title>
         <item>
+            <title>1.2.3</title>
+            <pubDate>Mon, 28 Sep 2026 16:17:21 +0200</pubDate>
+            <link>https://github.com/LoggeL/codex-konten/releases/latest</link>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>1.2.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/LoggeL/codex-konten/releases/download/v1.2.3/Codex-Konten-1.2.3-universal.zip" length="1727925" type="application/octet-stream" sparkle:edSignature="CBRwV8vgXXwJjXoDNXJ15c1RTDtb9njPWg/YLbSvESldF3WkB7QrqI+U0XORav8FKlEygIt1ZQ/xlXh+13jdDQ=="/>
+        </item>
+        <item>
             <title>1.2.2</title>
             <pubDate>Mon, 28 Sep 2026 14:13:22 +0200</pubDate>
             <link>https://github.com/LoggeL/codex-konten/releases/latest</link>
@@ -19,15 +28,6 @@
             <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/LoggeL/codex-konten/releases/download/v1.2.1/Codex-Konten-1.2.1-universal.zip" length="1700328" type="application/octet-stream" sparkle:edSignature="rIm6EFd8of2VYLm5Uya4+aqilbKfo71bxfU2qXCZGja2bXXWsO6v7yZEBzApg8KdUa2bhSHd4O2PfxlPs8JPAQ=="/>
-        </item>
-        <item>
-            <title>1.2.0</title>
-            <pubDate>Mon, 28 Sep 2026 09:34:17 +0200</pubDate>
-            <link>https://github.com/LoggeL/codex-konten/releases/latest</link>
-            <sparkle:version>3</sparkle:version>
-            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/LoggeL/codex-konten/releases/download/v1.2.0/Codex-Konten-1.2.0-universal.zip" length="1689681" type="application/octet-stream" sparkle:edSignature="wjx9t+w8l9HUbfx5EBglVwQW4d6hJtOH4WMs8ehuCTq90tCyrZ8E2q+mG/Y23dIjPJyGjgsmmraFU6B8ebEsBg=="/>
         </item>
     </channel>
 </rss>
