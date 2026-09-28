@@ -1,5 +1,10 @@
 # Änderungen
 
+## 1.2.3
+
+- Das Menüleistenelement bleibt nach dem Schließen der Kontenübersicht und des Verwaltungsfensters bestehen. Ein erneuter App-Aufruf öffnet die Übersicht.
+- Der Prozentwert des aktiven Kontos wird auf dem dauerhaft gehaltenen Menüleistenelement aktualisiert. „Beenden“ schließt die App weiterhin ausdrücklich.
+
 ## 1.2.2
 
 - Der Menüleisteneintrag verwendet ein einzelnes Text-Label für den Prozentwert. Während des Ladens erscheint „…“.

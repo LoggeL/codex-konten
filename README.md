@@ -18,6 +18,8 @@ Die Update-Prüfung benötigt keine Codex-Zugangsdaten. Die App verwendet keine 
 
 Der Prozentwert in der Menüleiste öffnet die Kontenübersicht. Er zeigt das verbleibende Wochenlimit des aktiven Kontos oder, wenn dieses fehlt, das 5-Stunden-Limit. Während des Ladens erscheint „…“. Die Werte laden beim Start und aktualisieren sich alle fünf Minuten sowie nach einem Kontowechsel. **Aktiv** bezeichnet die tatsächlich gelesene Codex-Anmeldung. Es erscheinen nur Limits, die Codex liefert, mit verbleibendem Prozentsatz und Rücksetzzeit. Ein Wochenlimit bedeutet nicht, dass zusätzlich ein 5-Stunden-Limit verfügbar sein muss. Daten nach mehr als 15 Minuten sind als veraltet markiert; Fehler lassen vorhandene Werte sichtbar.
 
+Das Menüleistenelement bleibt nach dem Schließen der Übersicht und des Verwaltungsfensters sichtbar. Wird die bereits laufende App erneut geöffnet, erscheint die Übersicht. **Beenden** im Menü schließt die App.
+
 **Konten verwalten** öffnet ein dauerhaftes Fenster. **Konto hinzufügen** startet die Browser-Anmeldung für ein benanntes Profil. Eine laufende Anmeldung kann abgebrochen werden. Ein inaktives Konto kann erneut angemeldet oder aus der Liste entfernt werden. Die geschützte Profildatei bleibt beim Entfernen erhalten; das aktive Konto lässt sich nicht entfernen.
 
 **Wechseln** verlangt eine Bestätigung. Codex wird regulär geschlossen, die Zielanmeldung geprüft und Codex anschließend neu geöffnet. Laufende Aufgaben werden dabei unterbrochen. Bleibt Codex nach 30 Sekunden noch geöffnet, wird die aktive Anmeldung nicht verändert. Scheitert nur der abschließende Start, steht **Codex öffnen** auch separat bereit.
@@ -51,6 +53,13 @@ xcrun swift build
 ```
 
 `--preview` liest keine Anmeldedaten. Die Offscreen-Bilder zeigen das Layout, nicht die GPU-gerenderten Glasflächen. Das paketierte Bundle lässt sich mit `open dist/"Codex Konten.app" --args --demo` als echte Menüleisten-App mit Beispielkonten starten. In diesem Modus werden weder Kontodienst noch Updater gestartet. `--dark` erzwingt nur für diese Demo das dunkle Erscheinungsbild.
+
+Der native Lebenszyklustest verwendet ebenfalls nur Beispieldaten und beendet seine Testinstanz selbst. Er öffnet und schließt die Übersicht und das Verwaltungsfenster und prüft, ob Menüleistenelement und Prozentwert erhalten bleiben:
+
+```sh
+open -n dist/"Codex Konten.app" --args --lifecycle-self-test /tmp/codex-konten-lifecycle-result.txt
+cat /tmp/codex-konten-lifecycle-result.txt
+```
 
 ## Releases vorbereiten
 

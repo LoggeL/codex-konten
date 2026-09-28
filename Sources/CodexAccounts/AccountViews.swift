@@ -23,7 +23,7 @@ struct AccountsPanel: View {
     @ObservedObject var model: AccountModel
     @ObservedObject var updates: UpdateController
     var manage = false
-    @Environment(\.openWindow) private var openWindow
+    var openManage: (() -> Void)? = nil
     @StateObject private var form = AccountForm()
 
     var body: some View {
@@ -255,8 +255,7 @@ struct AccountsPanel: View {
         form.name = account.displayName
         if manage { form.showingAdd = true }
         else {
-            openWindow(id: "accounts")
-            NSApp.activate(ignoringOtherApps: true)
+            openManage?()
         }
     }
 
@@ -319,8 +318,7 @@ struct AccountsPanel: View {
                 .modifier(PrimaryActionStyle())
             } else {
                 Button {
-                    openWindow(id: "accounts")
-                    NSApp.activate(ignoringOtherApps: true)
+                    openManage?()
                 } label: { Label("Konten verwalten", systemImage: "slider.horizontal.3") }
                     .buttonStyle(.borderless)
                     .foregroundStyle(.primary)
@@ -330,8 +328,7 @@ struct AccountsPanel: View {
                 Button("Codex öffnen") { model.openCodex() }.disabled(model.busy || updates.isInstalling || model.demoMode)
                 if !manage {
                     Button("Konto hinzufügen …") {
-                        openWindow(id: "accounts")
-                        NSApp.activate(ignoringOtherApps: true)
+                        openManage?()
                     }
                 }
                 Divider()
