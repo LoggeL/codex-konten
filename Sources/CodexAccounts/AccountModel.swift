@@ -15,9 +15,57 @@ final class AccountModel: ObservableObject {
     let demoMode: Bool
     private var updateIsInstalling: (@MainActor () -> Bool)?
     private var lastRefreshAttempt: Date?
+    private var backgroundRefreshTask: Task<Void, Never>?
 
     var busy: Bool { operation != nil }
     var accounts: [SavedAccountView] { snapshot?.accounts ?? [] }
+
+    /// Only the actual Codex identity (isActive) can contribute to the menu bar.
+    var menuBarRemaining: (percent: Int, window: String, account: String)? {
+        guard let active = accounts.first(where: \.isActive), let usage = active.usage else { return nil }
+        if let weekly = usage.weeklyRemaining, weekly.isFinite {
+            return (Int(min(100, max(0, weekly)).rounded()), "Wochenlimit", active.displayName)
+        }
+        if let fiveHour = usage.fiveHourRemaining, fiveHour.isFinite {
+            return (Int(min(100, max(0, fiveHour)).rounded()), "5-Stunden-Limit", active.displayName)
+        }
+        return nil
+    }
+
+    var menuBarDescription: String {
+        if let remaining = menuBarRemaining {
+            let base = "\(remaining.account): \(remaining.percent) % im \(remaining.window) übrig"
+            if let active = accounts.first(where: \.isActive), let usage = active.usage {
+                let fetchedAt = usage.fetchedAt.formatted(Date.FormatStyle(date: .abbreviated, time: .shortened).locale(Locale(identifier: "de_DE")))
+                if let error = active.error, !error.isEmpty {
+                    return "\(base). Abruf fehlgeschlagen: \(error). Letzter Stand: \(fetchedAt)"
+                }
+                if Date().timeIntervalSince(usage.fetchedAt) > 900 {
+                    return "\(base). Veralteter Stand vom \(fetchedAt)"
+                }
+                return "\(base). Stand: \(fetchedAt)"
+            }
+            return base
+        }
+        if let active = accounts.first(where: \.isActive) {
+            return "\(active.displayName): Limit noch nicht verfügbar"
+        }
+        return snapshot == nil ? "Codex Konten: Konten werden geladen" : "Codex Konten: kein aktives Konto erkannt"
+    }
+
+    func startBackgroundRefresh(updates: UpdateController) {
+        updates.bindAccountBusy { [weak self] in self?.busy ?? false }
+        bindUpdateInstall { [weak updates] in updates?.isInstalling ?? false }
+        guard service != nil, backgroundRefreshTask == nil else { return }
+        load()
+        backgroundRefreshTask = Task { [weak self] in
+            while !Task.isCancelled {
+                do { try await Task.sleep(for: .seconds(300)) }
+                catch { break }
+                self?.refresh()
+            }
+        }
+    }
 
     func bindUpdateInstall(_ isInstalling: @escaping @MainActor () -> Bool) {
         updateIsInstalling = isInstalling

@@ -1,38 +1,49 @@
 import AppKit
 import SwiftUI
 
+@MainActor
+private enum AppServices {
+    static let arguments = ProcessInfo.processInfo.arguments
+    static let demoMode = arguments.contains("--demo") || arguments.contains("--updater-demo") ||
+        (Bundle.main.object(forInfoDictionaryKey: "CodexAccountsDemoMode") as? Bool == true)
+    static let model = AccountModel(preview: arguments.contains("--preview"), demo: demoMode)
+    static let updates = UpdateController(preview: arguments.contains("--preview") ||
+        (arguments.contains("--demo") && !arguments.contains("--updater-demo")))
+
+    static func start() { model.startBackgroundRefresh(updates: updates) }
+}
+
 @main
 struct CodexAccountsApp: App {
-    @StateObject private var model = AccountModel(
-        preview: ProcessInfo.processInfo.arguments.contains("--preview"),
-        demo: Self.isDemoMode
-    )
-    @StateObject private var updates = UpdateController(
-        preview: ProcessInfo.processInfo.arguments.contains("--preview") ||
-            (ProcessInfo.processInfo.arguments.contains("--demo") && !ProcessInfo.processInfo.arguments.contains("--updater-demo"))
-    )
-
-    private static var isDemoMode: Bool {
-        let arguments = ProcessInfo.processInfo.arguments
-        return arguments.contains("--demo") || arguments.contains("--updater-demo") ||
-            (Bundle.main.object(forInfoDictionaryKey: "CodexAccountsDemoMode") as? Bool == true)
-    }
+    @StateObject private var model = AppServices.model
+    @StateObject private var updates = AppServices.updates
 
     init() {
         if ProcessInfo.processInfo.arguments.contains("--preview") {
             PreviewRenderer.renderAndExit()
         }
-        if Self.isDemoMode, ProcessInfo.processInfo.arguments.contains("--dark") {
+        if AppServices.demoMode, ProcessInfo.processInfo.arguments.contains("--dark") {
             NSApplication.shared.appearance = NSAppearance(named: .darkAqua)
         }
+        AppServices.start()
     }
 
     var body: some Scene {
-        MenuBarExtra("Codex Konten", systemImage: "person.2", isInserted: .constant(
+        MenuBarExtra(isInserted: .constant(
             Bundle.main.object(forInfoDictionaryKey: "CodexAccountsHeadlessTestMode") as? Bool != true
         )) {
             AccountsPanel(model: model, updates: updates)
-        }.menuBarExtraStyle(.window)
+        } label: {
+            HStack(spacing: 4) {
+                Image(systemName: "person.2")
+                if let remaining = model.menuBarRemaining {
+                    Text("\(remaining.percent)%").monospacedDigit()
+                }
+            }
+            .help(model.menuBarDescription)
+            .accessibilityLabel(model.menuBarDescription)
+        }
+        .menuBarExtraStyle(.window)
         Window("Konten verwalten", id: "accounts") {
             AccountsPanel(model: model, updates: updates, manage: true).frame(minHeight: 380)
         }

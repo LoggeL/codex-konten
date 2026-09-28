@@ -1,5 +1,10 @@
 # Änderungen
 
+## 1.2.1
+
+- Die Menüleiste zeigt den verbleibenden Prozentsatz des aktiven Kontos. Bevorzugt wird das Wochenlimit, ersatzweise das 5-Stunden-Limit.
+- Konten und Limits werden bereits beim Start und anschließend alle fünf Minuten geladen, auch wenn das Popover geschlossen bleibt.
+
 ## 1.2.0
 
 - Überarbeitete Kontenübersicht mit E-Mail-Adressen, Aktiv-Text und voller Breite für die Limitbalken. Avatare und runde Schaltflächen-Hintergründe entfallen.

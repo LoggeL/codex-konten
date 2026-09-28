@@ -16,7 +16,7 @@ Die Update-Prüfung benötigt keine Codex-Zugangsdaten. Die App verwendet keine 
 
 ## Bedienung
 
-Das Personen-Symbol in der Menüleiste öffnet die Kontenübersicht. **Aktiv** bezeichnet die tatsächlich gelesene Codex-Anmeldung. Es erscheinen nur Limits, die Codex liefert, mit verbleibendem Prozentsatz und Rücksetzzeit. Ein Wochenlimit bedeutet nicht, dass zusätzlich ein 5-Stunden-Limit verfügbar sein muss. Daten nach mehr als 15 Minuten sind als veraltet markiert; Fehler lassen vorhandene Werte sichtbar.
+Das Personen-Symbol in der Menüleiste öffnet die Kontenübersicht. Daneben steht der verbleibende Prozentsatz des aktiven Kontos: das Wochenlimit oder, wenn dieses fehlt, das 5-Stunden-Limit. Die Werte laden beim Start und aktualisieren sich alle fünf Minuten sowie nach einem Kontowechsel. **Aktiv** bezeichnet die tatsächlich gelesene Codex-Anmeldung. Es erscheinen nur Limits, die Codex liefert, mit verbleibendem Prozentsatz und Rücksetzzeit. Ein Wochenlimit bedeutet nicht, dass zusätzlich ein 5-Stunden-Limit verfügbar sein muss. Daten nach mehr als 15 Minuten sind als veraltet markiert; Fehler lassen vorhandene Werte sichtbar.
 
 **Konten verwalten** öffnet ein dauerhaftes Fenster. **Konto hinzufügen** startet die Browser-Anmeldung für ein benanntes Profil. Eine laufende Anmeldung kann abgebrochen werden. Ein inaktives Konto kann erneut angemeldet oder aus der Liste entfernt werden. Die geschützte Profildatei bleibt beim Entfernen erhalten; das aktive Konto lässt sich nicht entfernen.
 
