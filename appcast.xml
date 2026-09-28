@@ -3,6 +3,15 @@
     <channel>
         <title>Codex Konten</title>
         <item>
+            <title>1.2.2</title>
+            <pubDate>Mon, 28 Sep 2026 14:13:22 +0200</pubDate>
+            <link>https://github.com/LoggeL/codex-konten/releases/latest</link>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>1.2.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/LoggeL/codex-konten/releases/download/v1.2.2/Codex-Konten-1.2.2-universal.zip" length="1699755" type="application/octet-stream" sparkle:edSignature="FCav9PAvHKdQhFqoHp4z2TdrCnWr6ySAicgvuPuMNLJd/j2n+bglfBWVulbJlzykqmPGvTl5rLVekDeQWjo0CQ=="/>
+        </item>
+        <item>
             <title>1.2.1</title>
             <pubDate>Mon, 28 Sep 2026 10:32:35 +0200</pubDate>
             <link>https://github.com/LoggeL/codex-konten/releases/latest</link>
